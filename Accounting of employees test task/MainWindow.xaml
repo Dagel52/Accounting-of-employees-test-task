@@ -1,0 +1,114 @@
+﻿<Window x:Class="Accounting_of_employees_test_task.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Accounting_of_employees_test_task"
+        mc:Ignorable="d"
+        Title="WorkersApp" Height="650" Width="850">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="65" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S"  Command="{Binding SaveCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="W"  Command="{Binding OpenCommand}" />
+       </Window.InputBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.8*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+        <Menu Grid.ColumnSpan="2" >
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" InputGestureText="Ctrl+W" Command="{Binding OpenCommand}" />
+                <MenuItem Header="Сохранить" InputGestureText="Ctrl+S" Command="{Binding SaveCommand}" />
+            </MenuItem>
+        </Menu>
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Workers}"
+                 SelectedItem="{Binding SelectedWorker}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Name}"/>
+                        <TextBlock FontSize="18" Text="{Binding Path=LastName}" />
+                        <TextBlock FontSize="15" Text="{Binding Path=Department}"/>
+                        <TextBlock FontSize="15" Text="{Binding Path=Status}" Foreground="{Binding Path=Color}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Command="{Binding AddCommand}" Content="Добавить"/>
+            <Button Command="{Binding RemoveCommand}"
+                    CommandParameter="{Binding SelectedWorker}">Удалить</Button>
+            <Button Command="{Binding FireCommand}"
+                    CommandParameter="{Binding SelectedWorker}">Уволить</Button>
+            <Button Command="{Binding RestoreCommand}" Width="80"
+                    CommandParameter="{Binding SelectedWorker}">Восстановить</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"  Grid.Column="1" Orientation="Horizontal">
+            <TextBox Text="Фильтровать по:" TextWrapping="Wrap" Width="65"/>
+            <ComboBox Name="ComboboxElement" Height="54" VerticalAlignment="Top" SelectedIndex="{Binding SelectedIndex}">
+                <TextBlock Text="Имя"/>
+                <TextBlock Text="Фамилия"/>
+                <TextBlock Text="Идентификатор"/>
+                <TextBlock Text="Должность"/>
+                <TextBlock Text="Департамент"/>
+                <TextBlock Text="Зарплата"/>
+                <TextBlock Text="Стаж"/>
+                <TextBlock Text="Категория"/>
+                <TextBlock Text="Оклад"/>
+                <TextBlock Text="Премия"/>
+                <TextBlock Text="Количество задач"/>
+                <TextBlock Text="Возраст"/>
+                <TextBlock Text="Статус"/>
+            </ComboBox>
+            <TextBox Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding SelectedWorker}">
+            <TextBlock Text="Выбранный элемент"  />
+            <TextBlock Text="Имя" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Фамилия" />
+            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="ID Работника" />
+            <TextBox Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Должность" />
+            <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Департамент" />
+            <TextBox Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Зарплата за месяц" />
+            <TextBox Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Стаж" />
+            <TextBox Text="{Binding Expirience, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Категория" />
+            <TextBox Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Оклад" />
+            <TextBox Text="{Binding Pay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Премия" />
+            <TextBox Text="{Binding Bonus, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Количество  текущих задач" />
+            <TextBox Text="{Binding TaskNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Возраст" />
+            <TextBox Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Статус сотрудника" />
+            <TextBox Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+    </Grid>
+</Window>
