@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Accounting_of_employees_test_task
 {
@@ -21,11 +19,11 @@ namespace Accounting_of_employees_test_task
         private int _taskNumber;
         private int _age;
         private string _status;
-        private string _color="Black";
+        private string _color = "Black";
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -34,7 +32,7 @@ namespace Accounting_of_employees_test_task
         }
         public string LastName
         {
-            get { return _lastName; }
+            get => _lastName;
             set
             {
                 _lastName = value;
@@ -43,7 +41,7 @@ namespace Accounting_of_employees_test_task
         }
         public int ID
         {
-            get { return _id; }
+            get => _id;
             set
             {
                 _id = value;
@@ -53,7 +51,7 @@ namespace Accounting_of_employees_test_task
 
         public string Position
         {
-            get { return _position; }
+            get => _position;
             set
             {
                 _position = value;
@@ -63,7 +61,7 @@ namespace Accounting_of_employees_test_task
 
         public string Department
         {
-            get { return _department; }
+            get => _department;
             set
             {
                 _department = value;
@@ -73,7 +71,7 @@ namespace Accounting_of_employees_test_task
 
         public decimal Pay
         {
-            get { return _pay; }
+            get => _pay;
             set
             {
 
@@ -85,7 +83,7 @@ namespace Accounting_of_employees_test_task
 
         public decimal Bonus
         {
-            get { return _bonus; }
+            get => _bonus;
             set
             {
 
@@ -97,7 +95,7 @@ namespace Accounting_of_employees_test_task
 
         public decimal Salary
         {
-            get { return _salary; }
+            get => _salary;
             set
             {
 
@@ -108,7 +106,7 @@ namespace Accounting_of_employees_test_task
 
         public double Expirience
         {
-            get { return _expirience; }
+            get => _expirience;
             set
             {
 
@@ -119,7 +117,7 @@ namespace Accounting_of_employees_test_task
 
         public int Category
         {
-            get { return _category; }
+            get => _category;
             set
             {
 
@@ -127,10 +125,10 @@ namespace Accounting_of_employees_test_task
                 OnPropertyChanged("Category");
             }
         }
-        
-        public int TaskNumber   
+
+        public int TaskNumber
         {
-            get { return _taskNumber; }
+            get => _taskNumber;
             set
             {
 
@@ -140,7 +138,7 @@ namespace Accounting_of_employees_test_task
         }
         public int Age
         {
-            get { return _age; }
+            get => _age;
             set
             {
 
@@ -151,7 +149,7 @@ namespace Accounting_of_employees_test_task
 
         public string Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 _status = value;
@@ -161,7 +159,7 @@ namespace Accounting_of_employees_test_task
 
         public string Color
         {
-            get { return _color; }
+            get => _color;
             set
             {
                 _color = value;
@@ -177,13 +175,12 @@ namespace Accounting_of_employees_test_task
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         public object Clone()
         {
-            return (Worker)this.MemberwiseClone();
+            return (Worker)MemberwiseClone();
         }
     }
 }

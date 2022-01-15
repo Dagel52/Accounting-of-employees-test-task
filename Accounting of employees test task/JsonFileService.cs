@@ -23,10 +23,8 @@ namespace Accounting_of_employees_test_task
         {
             DataContractJsonSerializer jsonFormatter =
                 new DataContractJsonSerializer(typeof(List<Worker>));
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
-            {
-                jsonFormatter.WriteObject(fs, workersList);
-            }
+            using FileStream fs = new FileStream(filename, FileMode.Create);
+            jsonFormatter.WriteObject(fs, workersList);
         }
     }
 }
